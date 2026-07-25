@@ -1,0 +1,20 @@
+[
+    {
+        "scenarioName": "Backpack purchase",
+        "username": "standard_user",
+        "password": "secret_sauce",
+        "productName": "Sauce Labs Backpack",
+        "firstName": "Venkata",
+        "lastName": "Kovvuri",
+        "postalCode": "75009"
+    },
+    {
+        "scenarioName": "Bike light purchase",
+        "username": "standard_user",
+        "password": "secret_sauce",
+        "productName": "Sauce Labs Bike Light",
+        "firstName": "John",
+        "lastName": "Smith",
+        "postalCode": "75010"
+    }
+]
