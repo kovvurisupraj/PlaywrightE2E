@@ -5,11 +5,16 @@ import { InventoryPage } from '../pages/InventoryPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 
+import { request, type APIRequestContext } from '@playwright/test';
+import { BookingApi } from '../api/BookingApi';
+
 type PageFixtures = {
   loginPage: LoginPage;
   inventoryPage: InventoryPage;
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
+  apiRequest: APIRequestContext;
+  bookingApi: BookingApi;
 };
 
 export const test = base.extend<PageFixtures>({
@@ -27,5 +32,18 @@ export const test = base.extend<PageFixtures>({
 
   checkoutPage: async ({ page }, use) => {
     await use(new CheckoutPage(page));
+  },
+  apiRequest: async ({}, use) => {
+    const apiRequest = await request.newContext({
+      baseURL: process.env.API_BASE_URL,
+    });
+
+    await use(apiRequest);
+
+    await apiRequest.dispose();
+  },
+
+  bookingApi: async ({ apiRequest }, use) => {
+    await use(new BookingApi(apiRequest));
   },
 });
