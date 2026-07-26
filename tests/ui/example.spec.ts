@@ -1,5 +1,5 @@
-import { test } from '../fixtures/pageFixtures';
-import checkoutData from '../data/checkoutData.json';
+import { test } from '../../fixtures/pageFixtures';
+import checkoutData from '../../data/checkoutData.json';
 for (const data of checkoutData) {
 
   test(`Open SauceDemo login page for ${data.scenarioName}`, async ({ loginPage, inventoryPage, cartPage, checkoutPage }) => {
