@@ -2,7 +2,7 @@ import { expect, type APIRequestContext, type APIResponse } from '@playwright/te
 import type { Booking } from './types/Booking';
 
 export class BookingApi {
-  constructor(private readonly request: APIRequestContext) { }
+  constructor(private readonly request: APIRequestContext) {}
 
   async getAllBookings(): Promise<APIResponse> {
     const response = await this.request.get('/booking');
@@ -47,11 +47,7 @@ export class BookingApi {
     return responseBody.token;
   }
 
-  async updateBooking(
-    bookingId: number,
-    booking: Booking,
-    token: string
-  ): Promise<APIResponse> {
+  async updateBooking(bookingId: number, booking: Booking, token: string): Promise<APIResponse> {
     const response = await this.request.put(`/booking/${bookingId}`, {
       headers: {
         Cookie: `token=${token}`,
@@ -85,10 +81,7 @@ export class BookingApi {
     return response;
   }
 
-  async deleteBooking(
-    bookingId: number,
-    token: string
-  ): Promise<APIResponse> {
+  async deleteBooking(bookingId: number, token: string): Promise<APIResponse> {
     const response = await this.request.delete(`/booking/${bookingId}`, {
       headers: {
         Cookie: `token=${token}`,
@@ -99,9 +92,7 @@ export class BookingApi {
 
     return response;
   }
-  async getBookingByIdWithoutValidation(
-    bookingId: number
-  ): Promise<APIResponse> {
+  async getBookingByIdWithoutValidation(bookingId: number): Promise<APIResponse> {
     return this.request.get(`/booking/${bookingId}`);
   }
 }
