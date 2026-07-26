@@ -8,6 +8,8 @@ import { CheckoutPage } from '../pages/CheckoutPage';
 import { request, type APIRequestContext } from '@playwright/test';
 import { BookingApi } from '../api/BookingApi';
 
+import { DatabaseClient } from '../database/DatabaseClient';
+
 type PageFixtures = {
   loginPage: LoginPage;
   inventoryPage: InventoryPage;
@@ -15,6 +17,7 @@ type PageFixtures = {
   checkoutPage: CheckoutPage;
   apiRequest: APIRequestContext;
   bookingApi: BookingApi;
+  database: DatabaseClient;
 };
 
 export const test = base.extend<PageFixtures>({
@@ -45,5 +48,15 @@ export const test = base.extend<PageFixtures>({
 
   bookingApi: async ({ apiRequest }, use) => {
     await use(new BookingApi(apiRequest));
+  },
+
+  database: async ({}, use) => {
+    const database = new DatabaseClient('./database/playwright.db');
+
+    database.createOrdersTable();
+
+    await use(database);
+
+    database.close();
   },
 });
