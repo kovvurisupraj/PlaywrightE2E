@@ -8,6 +8,9 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      UI_BASE_URL: https://www.saucedemo.com
+      API_BASE_URL: https://restful-booker.herokuapp.com
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
